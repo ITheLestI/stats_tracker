@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stats tracker</title>
+    <style>
+        
+        select {
+            padding: .6em 1.4em .5em .8em;
+        }
+
+
+        .button {
+            background-color: #04AA6D; /* Green */
+            border: 2px solid #04AA6D;
+            color: white;
+            padding: 14px 26px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1:hover {
+            background-color: white;
+            color: black;
+        }
+        
+        #table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;        
+        }
+
+        #table td, #table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #table tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+
+        #table tr:hover {
+            background-color: #ddd;
+        }
+
+        #table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+
+    </style>
+    <script>
+        var href = window.location.href
+        
+        function getValue(){
+            var x, option;
+        x = document.getElementById("selector")
+        option = x.options[x.selectedIndex].value
+        console.log(option)
+        if (href.charAt(href.length-1) != "/"){
+            href_array = href.split("/")
+            href_array.pop()
+            href = href_array.join("/")+"/"
+        }
+        window.location.replace(href + option)
+        
+        }
+        function saveDoc(){
+            var _=cur.docUrl;
+            return _.match(/\?/)?_+="&dl=1":_+="?dl=1",
+                    statlogsValueEvent("docs_preview",0,"download",cur.docExt),
+                    location.replace(_),!1}
+    </script>
+</head>
+<body>
+   <h2>Статистика пловцов</h2>
+   <select name="distances" id="selector">
+       <option value="200vs" id="0" {% if type == "200vs" %}selected{% endif %}>200 вольный стиль</option>
+       <option value="100bt" id="1" {% if type == "100bt" %}selected{% endif %}>100 баттерфляй</option>
+       <option value="100sp" id="2" {% if type == "100sp" %}selected{% endif %}>100 на спине</option>
+       <option value="100br" id="3" {% if type == "100br" %}selected{% endif %}>100 брассом</option>
+       <option value="100vs" id="4" {% if type == "100vs" %}selected{% endif %}>100 вольный стиль</option>
+       <option value="400vs" id="5" {% if type == "400vs" %}selected{% endif %}>400 вольный стиль</option>
+       <option value="200kp" id="6" {% if type == "200kp" %}selected{% endif %}>200 комплекс</option>
+       <option value="100kp" id="7" {% if type == "100kp" %}selected{% endif %}>100 комплекс</option>
+   </select>
+   <input type="button" value="Перейти" class= "button button1" onclick="getValue()"><br>
+    {% block content %}
+
+
+    {% endblock %}
+</body>
+</html>
