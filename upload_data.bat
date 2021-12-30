@@ -1,0 +1,1 @@
+pscp -pw 12388 ./data.xls pavel@213.178.155.20:/home/pavel/webapp/tracker/data.xls
