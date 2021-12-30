@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table id="table">
+    <tr>
+        <th>Имя</td>
+        <th>Г.р.</td>
+        <th>Было очков</td>
+        <th>Время</td>
+        <th>Разряд</td>
+        <th>Получено очков</td>
+        <th>Стало очков</td>
+        <th>Место</td>
+        <th>Место в общем зачете</td>
+    </tr>
+    {% for swimmer in table%}
+    <tr {% if swimmer["name"] == "Москвин Антон" %}style="font-weight:bold"{% endif %}>
+        <td>{{ swimmer["name"] }} </td>
+        <td>{{ swimmer["year"] }}</td>
+        <td>{{ swimmer["prev_points"] }}</td>
+        <td>{{ swimmer["time"] }}</td>
+        <td>{{ swimmer["class"] }}</td>
+        <td>{{ swimmer["got_points"] }}</td>
+        <td>{{ swimmer["points"] }}</td>
+        <td>{{ swimmer["place"] }}</td>
+        <td>{{ swimmer["overall_place"] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
